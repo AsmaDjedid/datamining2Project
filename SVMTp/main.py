@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-
+#asssss
 class SVM:
     
     def __init__(self, learning_rate=1e-3, lambda_param=1e-2, nbr_iters=1000):
