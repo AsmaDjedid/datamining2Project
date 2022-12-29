@@ -39,9 +39,55 @@ class SVM:
     def _update_weights_bias(self, dw, db):
         self.w -= self.lr * dw
         self.b -= self.lr * db
+        
+        
+     #Déclaration de fonctions
 
-def convert_data(df) -> list:
-    pass
+       def convert_data(df) -> list: 
+    
+
+    y = []  #déclaration d'un tableau vide
+    for index, line in df.iterrows():  
+        cont = [
+            int(line['policy_id']),
+            int(line['area_cluster']),
+            int(line['segment']),
+            int(line['model']),
+            int(line['fuel_type']),
+            int(line['max_torque']),
+            int(line['max_power']),
+            int(line['engine_type']),
+            int(line['is_esc']),
+            float(line['is_ajustable_steering']),
+            int(line['is_tpms']),
+            int(line['is_parking_sensors']),
+            int(line['is_parking_camera']),
+            int(line['rear_brakes_type']),
+            int(line['transmission_type']),
+            int(line['gear_bocks']),
+            int(line['height']),
+            int(line['gross_weigth']),
+            int(line['is_front_for_lights']),
+            int(line['is_rear_window_wiper']),
+            int(line['is_rear_window_washer']) ,
+            int(line['is_rear_window_defogger']),
+            int(line['is_brake_assist']) ,
+            int(line['is_power_door_loks']) ,  
+            int(line['is_central_locking']) ,  
+            int(line['is_power_steering']),   
+            int(line['is_driver_seat_height_adjustable']) , 
+            int(line['is_day_night_rear_view_mirror']) ,  
+               
+                
+                   ]
+        y.append(cont)  
+
+    return y 
+
+
+
+
+
 
 
 
