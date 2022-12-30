@@ -80,7 +80,16 @@ def convert_data(df) -> list:
 
     return y
 
+   def fit(self, X, y):
+        n_samples, n_features = X.shape
 
+        y_ = np.where(y <= 0, -1, 1)
+
+        self.w = np.zeros(n_features)
+        self.b = 0
+
+        for _ in range(self.n_iters):
+            for idx, x_i in enumerate(X):
 
 
 
