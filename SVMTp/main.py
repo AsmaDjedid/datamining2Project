@@ -41,13 +41,11 @@ class SVM:
         self.b -= self.lr * db
 # Déclaration de fonctions
 
-def convert_data(df) -> list: 
-    
-
+def convert_data(df) -> list:
     y = []  #déclaration d'un tableau vide
     for index, line in df.iterrows():  
         cont = [
-            int(line['policy_id']),
+            print(line['policy_id']),
             int(line['area_cluster']),
             int(line['segment']),
             int(line['model']),
@@ -70,17 +68,17 @@ def convert_data(df) -> list:
             int(line['is_rear_window_washer']) ,
             int(line['is_rear_window_defogger']),
             int(line['is_brake_assist']) ,
-            int(line['is_power_door_loks']) ,  
-            int(line['is_central_locking']) ,  
-            int(line['is_power_steering']),   
-            int(line['is_driver_seat_height_adjustable']) , 
-            int(line['is_day_night_rear_view_mirror']) ,  
-               
-                
-                   ]
-        y.append(cont)  
+            int(line['is_power_door_loks']) ,
+            int(line['is_central_locking']) ,
+            int(line['is_power_steering']),
+            int(line['is_driver_seat_height_adjustable']) ,
+            int(line['is_day_night_rear_view_mirror'])
 
-    return y 
+            ]
+        y.append(cont)
+
+
+    return y
 
 
 
@@ -95,8 +93,31 @@ if __name__ == '__main__':
     df_test = pd.read_csv("test.csv")
     df_train = pd.read_csv("train.csv")
 
-    #conversion de données
+    # afficher les dimensions de DataFrame (nombre de lignes et nombre de colonnes)
+    print("dimension de DataFrame: {} rows, {} columns".format(df.shape[0], df.shape[1]))
+    print("dimension de DataFrame de teste : {} rows, {} columns".format(df_test.shape[0], df_test.shape[1]))
+    print("dimension de DataFrame de train : {} rows, {} columns".format(df_train.shape[0], df_train.shape[1]))
 
+    # Générer des statistiques descriptives
+    print(df.describe())
+    print(df_test.describe())
+    print(df_train.describe())
+
+    # Renvoyer le nombre de valeurs uniques de chaque classe de "is_claim"
+    print("Les valeurs de classe is_claim est \n ",df_train['is_claim'].value_counts(), '\n')
+
+    # Renvoyer le pourcentage des voitures avec ou sans assurance dans  chaque classe
+    count_no_is_claim = len(df_train[df_train.is_claim == 0])
+    count_is_claim = len(df_train[df_train.is_claim == 1])
+    print("Pourcentage des voitures sans assurance: {:.2f}%".format(
+        (count_no_is_claim / (len(df_train.is_claim)) * 100)))
+    print("Pourcentage des voitures avec assurance : {:.2f}%".format(
+        (count_is_claim / (len(df_train.is_claim)) * 100)), "\n")
+
+    #conversion de données
+    data_train_convertis = convert_data(df_train)
+    data_test_convertis = convert_data(df_test)
+    print(data_train_convertis)
     #conversion en liste
     l = np.array(df)
     l_test = np.array(df_test)
@@ -105,5 +126,5 @@ if __name__ == '__main__':
     #print(l)
     #print(l_test)
     t = list(l_train[::1])
-    print("liste ",t)
+    #print("liste ",t)
 
