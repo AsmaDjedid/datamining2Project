@@ -45,7 +45,7 @@ def convert_data(df) -> list:
     y = []  #déclaration d'un tableau vide
     for index, line in df.iterrows():  
         cont = [
-            print(line['policy_id']),
+            (line['policy_id']),
             int(line['area_cluster']),
             int(line['segment']),
             int(line['model']),
@@ -125,7 +125,7 @@ if __name__ == '__main__':
 
     #conversion de données
     data_train_convertis = convert_data(df_train)
-    data_test_convertis = convert_data(df_test)
+
     print(data_train_convertis)
     #conversion en liste
     l = np.array(df)
