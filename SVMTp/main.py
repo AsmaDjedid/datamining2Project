@@ -76,8 +76,6 @@ def convert_data(df) -> list:
 
             ]
         y.append(cont)
-
-
     return y
 
    def fit(self, X, y):
