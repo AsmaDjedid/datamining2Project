@@ -65,44 +65,20 @@ class SVM:
         return np.sign(approx)
 
 # Déclaration de fonctions
-def convert_data(df) -> list:
-    y = []  #déclaration d'un tableau vide
-    for index, line in df.iterrows():  
-        cont = [
-            (line['policy_id']),
-            int(line['area_cluster']),
-            int(line['segment']),
-            int(line['model']),
-            int(line['fuel_type']),
-            int(line['max_torque']),
-            int(line['max_power']),
-            int(line['engine_type']),
-            int(line['is_esc']),
-            float(line['is_ajustable_steering']),
-            int(line['is_tpms']),
-            int(line['is_parking_sensors']),
-            int(line['is_parking_camera']),
-            int(line['rear_brakes_type']),
-            int(line['transmission_type']),
-            int(line['gear_bocks']),
-            int(line['height']),
-            int(line['gross_weigth']),
-            int(line['is_front_for_lights']),
-            int(line['is_rear_window_wiper']),
-            int(line['is_rear_window_washer']) ,
-            int(line['is_rear_window_defogger']),
-            int(line['is_brake_assist']) ,
-            int(line['is_power_door_loks']) ,
-            int(line['is_central_locking']) ,
-            int(line['is_power_steering']),
-            int(line['is_driver_seat_height_adjustable']) ,
-            int(line['is_day_night_rear_view_mirror'])
+    #create a list of column names with data type = string
+  tringCollist = [i [0] for i in df.dtypes if i [1]== 'string']
+      print stringCollist
 
-            ]
-        y.append(cont)
-    return y
+     from pyspark.sql.functions import *
+        #create a function that performs a countDistinct
+     distinctlist = []
+     def countDistinctCats (colName):
+        count = df.agg(countDistinct(colName)).collect()
+        distinctlist.append (count)
+        #Apply function on evrey colum in stringCollit
+    map( countDistinct, stringCollist)
+    print distinctlist
 
-  
 
 
 
